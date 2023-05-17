@@ -6,12 +6,12 @@ export default function Cart() {
     <div className="grid gap-3">
       <Card>
         <CardBody>
-          <LineItem />
+          <LineItem brand="Test" price="200" model="dssdsd" />
         </CardBody>
       </Card>
 
       <Card>
-        <CardBody>
+        <CardBody className="grid gap-3">
           <div>
             Total Price: <strong>117.000TL</strong>
           </div>
