@@ -1,60 +1,69 @@
-import React from "react";
-import { Card, CardBody, CheckBox, Radio } from "../../components";
-import Input from "../../components/Input/Input";
-import { BiSearchAlt } from "react-icons/bi";
+import { Card, CardBody, FilterCard, Radio } from "../../components";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addFilter,
+  filtersSelector,
+} from "../../libs/store/slices/filterSlice.js";
 
 export default function Filter() {
+  const dispatch = useDispatch();
+  const filters = useSelector(filtersSelector);
+
+  const handleChange = (e) => {
+    const { value, name, type } = e.target;
+    dispatch(addFilter({ key: name, value, type }));
+  };
+
   return (
     <div className="flex flex-col space-y-2">
-      <div>Sort By</div>
-      <Card>
-        <CardBody>
-          {radioItems.map((item) => (
-            <Radio title={item.title} />
-          ))}
-        </CardBody>
-      </Card>
+      <FilterCard
+        type="radio"
+        name="sort_by"
+        title="Sort By"
+        data={sortMap}
+        onChange={handleChange}
+      />
 
-      <div>Brands</div>
-      <Card>
-        <CardBody>
-          <Input prefix={<BiSearchAlt />} />
-          <div className="max-h-24 overflow-y-scroll mt-2">
-            <CheckBox title="11 Pro" />
-            <CheckBox title="12 Pro Max" />
-            <CheckBox title="12 Pro Max" />
-            <CheckBox title="12 Pro Max" />
-            <CheckBox title="12 Pro Max" />
-            <CheckBox title="12 Pro Max" />
-            <CheckBox title="12 Pro Max" />
-          </div>
-        </CardBody>
-      </Card>
-      <div>Models</div>
-      <Card>
-        <CardBody>
-          <CheckBox title="7 Plus" />
-        </CardBody>
-      </Card>
-      <div></div>
-      <div></div>
+      <div className="flex flex-col space-y-2">
+        {filters.map((filter) => {
+          return (
+            <FilterCard
+              key={filter.key}
+              name={filter.key}
+              title={filter.key}
+              data={filter.data}
+              type={filter.type}
+              showSearch={true}
+              onChange={handleChange}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
 
-const radioItems = [
-  { title: "Old to new", name: "old-to-new", value: "", onChange: "" },
-  { title: "New to old", name: "new-to-old", value: "", onChange: "" },
+const sortMap = [
+  {
+    title: "Old to new",
+    value: "old-to-new",
+  },
+  {
+    title: "New to old",
+    value: "new-to-old",
+  },
   {
     title: "Price high to low",
-    name: "price-high-to-low",
-    value: "",
-    onChange: "",
+    value: "price-high-to-low",
+
+    type: "radio",
+    key: "sort",
   },
   {
     title: "Price low to high",
-    name: "price-low-to-high",
-    value: "",
-    onChange: "",
+    value: "price-low-to-high",
+
+    type: "radio",
+    key: "sort",
   },
 ];
