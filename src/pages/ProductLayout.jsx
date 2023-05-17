@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Filter from "../sections/Filter/Filter";
-import Payment from "../sections/Cart/Cart";
+import Cart from "../sections/Cart/Cart";
 
 export default function ProductLayout() {
   return (
@@ -14,7 +14,7 @@ export default function ProductLayout() {
           <Outlet />
         </div>
         <div className="col-span-3">
-          <Payment />
+          <Cart />
         </div>
       </div>
     </main>

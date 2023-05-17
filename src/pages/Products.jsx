@@ -1,20 +1,38 @@
-import React from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { fetchProductsAsync } from "../libs/store/slices/productsSlice";
+
 import ProductCard from "../components/ProductCard/ProductCard";
 
 export default function Products() {
+  const dispatch = useDispatch();
+  const { data, loading } = useSelector((state) => state.products);
+  const selectedFilters = useSelector((state) => state.filters.selectedFilters);
+
+  useEffect(() => {
+    dispatch(fetchProductsAsync(selectedFilters));
+  }, [selectedFilters]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="grid grid-cols-4">
-      <ProductCard
-        product={{
-          name: "xxx",
-          price: "12 Manat",
-          id: "1",
-          brand: "Hiyar",
-          model: "Baku",
-          image:
-            "https://images.unsplash.com/photo-1531170960116-aa500027308c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-        }}
-      />
+      {data.map((products) => (
+        <ProductCard
+          key={products.id}
+          product={{
+            id: products.id,
+            name: products.name,
+            price: products.price,
+            brand: products.brand,
+            model: products.model,
+            image: products.image,
+          }}
+        />
+      ))}
     </div>
   );
 }
