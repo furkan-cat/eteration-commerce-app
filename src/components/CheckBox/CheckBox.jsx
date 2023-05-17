@@ -11,7 +11,7 @@ export default function CheckBox({ title, name, value, onChange }) {
 
 CheckBox.propTypes = {
   title: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  name: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
 };
