@@ -8,6 +8,6 @@ export default function Card({ children }) {
   );
 }
 
-Card.PropTypes = {
-  children: PropTypes.element,
+Card.propTypes = {
+  children: PropTypes.node,
 };
