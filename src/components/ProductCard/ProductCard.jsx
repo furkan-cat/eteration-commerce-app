@@ -3,12 +3,15 @@ import Button from "../Button/Button";
 
 export default function ProductCard({ product }) {
   return (
-    <div className="p-2.5 bg-white rounded-md border border-black/5">
-      <img src={product.image} alt={product.name} className="h-34 rounded-md" />
-      <div className="text-blue-600">{product.name}</div>
+    <div className="flex flex-col gap-2 p-2.5 bg-white rounded-md border border-black/5">
+      <img src={product.image} alt={product.name} className="h-34" />
+
+      <div className="text-blue-600 truncate">{product.name}</div>
+
       <div className="text-sm">
         {product.brand} {product.model}
       </div>
+
       <Button title="Add to Cart" className="w-full" />
     </div>
   );
