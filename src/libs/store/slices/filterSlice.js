@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const filterSlice = createSlice({
   name: "filters",
-  initialState: { selectedFilters: {} },
+  initialState: { selectedFilters: {}, searchValue: "" },
   reducers: {
     addFilter: (state, action) => {
       const { key, value, type } = action.payload;
@@ -21,6 +21,9 @@ export const filterSlice = createSlice({
           state.selectedFilters[key].push(value);
         }
       }
+    },
+    updateSearch: (state, action) => {
+      state.searchValue = action.payload;
     },
   },
 });
@@ -54,5 +57,5 @@ export const filtersSelector = createSelector(
   }
 );
 
-export const { addFilter } = filterSlice.actions;
+export const { addFilter, updateSearch } = filterSlice.actions;
 export default filterSlice.reducer;
