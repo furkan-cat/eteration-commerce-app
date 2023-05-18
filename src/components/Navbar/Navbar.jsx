@@ -1,17 +1,29 @@
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { BsBag } from "react-icons/bs";
 import { AiOutlineUser } from "react-icons/ai";
 import { BiSearchAlt } from "react-icons/bi";
+
 import Input from "../Input/Input";
+import { fetchProductsAsync } from "../../libs/store/slices/productsSlice";
+import { updateSearch } from "../../libs/store/slices/filterSlice";
+import { totalPriceSelector } from "../../libs/store/slices/cartSlice";
 
 export default function Navbar() {
-  
-  const handleSearch = (e) => {};
+  const totalPrice = useSelector(totalPriceSelector);
+  const searchValue = useSelector((state) => state.filters.searchValue);
+  const dispatch = useDispatch();
+
+  const handleSearch = (e) => {
+    dispatch(updateSearch(e.target.value));
+    dispatch(fetchProductsAsync({ text: searchValue }));
+  };
 
   return (
-    <div className="bg-blue-500 text-white p-3 flex-1">
+    <div className="bg-blue-500 text-white py-3 flex-1">
       <div className="container flex justify-between">
         <div className="flex sm:flex-row flex-col sm:items-center items-start sm:space-x-2 md:space-x-4">
-          <div>Eteration</div>
+          <Link to="/">Eteration</Link>
           <Input
             prefix={<BiSearchAlt />}
             placeholder="Search"
@@ -20,11 +32,12 @@ export default function Navbar() {
           />
         </div>
 
-        <div className="flex sm:flex-row flex-col sm:items-center items-start sm:space-x-2 md:space-x-4">
+        <div className="flex sm:flex-row flex-col sm:items-center items-start justify-center sm:space-x-2 md:space-x-4">
           <div className="flex items-center sm:space-x-2">
             <BsBag />
-            <div>118.123TL</div>
+            <div>{totalPrice}₺</div>
           </div>
+          
           <div className="flex items-center sm:space-x-2">
             <AiOutlineUser />
             <div>Kerem</div>
