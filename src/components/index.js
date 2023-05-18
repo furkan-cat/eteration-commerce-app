@@ -9,3 +9,5 @@ export { default as ProductCard } from "./ProductCard/ProductCard";
 export { default as ProductDetailCard } from "./ProductDetailCard/ProductDetailCard";
 export { default as QuantityPill } from "./QuantityPill/QuantityPill";
 export { default as FilterCard } from "./FilterCard/FilterCard";
+export { default as Pagination } from "./Pagination/Pagination";
+export { default as Spinner } from "./Spinner/Spinner";

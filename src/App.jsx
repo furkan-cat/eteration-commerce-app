@@ -7,25 +7,26 @@ import {
 } from "react-router-dom";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
-import ProductLayout from "./pages/ProductLayout";
-import { Navbar } from "./components";
+import ProductLayout from "./layouts/ProductLayout";
+import AppLayout from "./layouts/AppLayout";
 
 export const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
-        <Route path="/" element={<ProductLayout />}>
-          <Route index element={<Products />} />
+        <Route path="/" element={<AppLayout />}>
+          <Route path="/" element={<ProductLayout />}>
+            <Route index element={<Products />} />
+          </Route>
+          <Route path="/products" element={<Navigate to="/" />} />
+          <Route path="/products/:id" element={<ProductDetail />} />
         </Route>
-        <Route path="/products" element={<Navigate to="/" />} />
-        <Route path="/products/:id" element={<ProductDetail />} />
       </Route>
     )
   );
 
   return (
     <>
-      <Navbar />
       <RouterProvider router={router} />
     </>
   );
