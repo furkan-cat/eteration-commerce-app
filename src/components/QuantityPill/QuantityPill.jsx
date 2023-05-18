@@ -2,12 +2,12 @@ import cn from "classnames";
 
 export default function QuantityPill({ value, onChange, className }) {
   const handleInc = () => {
-    onChange?.(value + 1);
+    onChange?.({ type: "increase", value: value + 1 });
   };
 
   const handleDec = () => {
     if (value == 0) return;
-    onChange?.(value - 1);
+    onChange?.({ type: "decrease", value: value - 1 });
   };
 
   return (
