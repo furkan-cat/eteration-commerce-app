@@ -32,9 +32,11 @@ export default function FilterCard({
       {title ? <div>{title}</div> : null}
       <Card>
         {showSearch ? (
-          <Input prefix={<BiSearchAlt />} onChange={handleChangeText} />
+          <div className="p-2">
+            <Input prefix={<BiSearchAlt />} onChange={handleChangeText} />
+          </div>
         ) : null}
-        <div className="max-h-36 overflow-y-scroll">
+        <div className="max-h-36 overflow-y-auto">
           <CardBody>
             {searchedData.map((filterValue) => {
               const title = filterValue?.title || filterValue;
