@@ -2,18 +2,27 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchProductsAsync = createAsyncThunk(
   "products/fetchProducts",
-  async (args) => {
+  async (args, { getState }) => {
+    const { products } = getState();
+
     const options = {
       limit: 12,
-      skip: 0,
+      skip: products.meta.page,
       ...args,
     };
+  
     try {
       const originalData = await fetch(
         "https://5fc9346b2af77700165ae514.mockapi.io/products"
       ).then((res) => res.json());
 
       let data = structuredClone(originalData);
+
+      if (options.text) {
+        data = data.filter((product) =>
+          product.name.toLowerCase().includes(options.text.toLowerCase())
+        );
+      }
 
       if (options.sort_by) {
         switch (args.sort_by) {
@@ -59,8 +68,16 @@ export const productsSlice = createSlice({
     originalData: [],
     loading: false,
     error: null,
+    meta: { page: 0 },
   },
-  reducers: {},
+  reducers: {
+    increasePage: (state) => {
+      state.meta.page++;
+    },
+    decreasePage: (state) => {
+      state.meta.page--;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchProductsAsync.pending, (state) => {
       state.loading = true;
@@ -77,4 +94,5 @@ export const productsSlice = createSlice({
   },
 });
 
+export const { decreasePage, increasePage } = productsSlice.actions;
 export default productsSlice.reducer;
