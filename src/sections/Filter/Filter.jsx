@@ -1,4 +1,4 @@
-import { Card, CardBody, FilterCard, Radio } from "../../components";
+import { FilterCard } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addFilter,
