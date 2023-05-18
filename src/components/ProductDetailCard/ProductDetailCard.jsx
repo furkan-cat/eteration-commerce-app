@@ -12,13 +12,13 @@ export default function ProductDetailCard({ product, className }) {
     >
       <img src={product.image} alt={product.name} className="w-full sm:w-1/2" />
 
-      <div className="w-full sm:w-1/2">
+      <div className="w-full sm:w-1/2 flex flex-col gap-2">
         <div className="text-blue-600 truncate">{product.name}</div>
         <div className="text-sm">
           {product.brand} {product.model}
         </div>
         <Button title="Add to Cart" className="w-full" />
-        <p className="truncate">{product.description}</p>
+        <p>{product.description}</p>
       </div>
     </div>
   );
