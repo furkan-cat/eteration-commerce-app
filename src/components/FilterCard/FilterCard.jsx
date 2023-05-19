@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
+import { PropTypes } from "prop-types";
 
 import { Card, CardBody, CheckBox, Radio } from "../../components";
 import Input from "../../components/Input/Input";
@@ -9,6 +10,7 @@ export default function FilterCard({
   type,
   name,
   title,
+  selected,
   showSearch,
   onChange,
 }) {
@@ -60,6 +62,7 @@ export default function FilterCard({
                     title={title}
                     value={value}
                     onChange={onChange}
+                    defaultChecked={selected[name]?.includes?.(value)}
                   />
                 );
               }
@@ -70,3 +73,15 @@ export default function FilterCard({
     </div>
   );
 }
+
+FilterCard.propTypes = {
+  data: PropTypes.array,
+  type: PropTypes.string,
+  name: PropTypes.string,
+  title: PropTypes.string,
+  selected: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
+  ),
+  showSearch: PropTypes.oneOf([true, false, undefined]),
+  onChange: PropTypes.func,
+};
