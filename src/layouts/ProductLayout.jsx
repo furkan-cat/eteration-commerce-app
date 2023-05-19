@@ -1,5 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+
 import Filter from "../sections/Filter/Filter";
 import Cart from "../sections/Cart/Cart";
 

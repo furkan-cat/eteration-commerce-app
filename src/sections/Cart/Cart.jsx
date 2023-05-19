@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+
 import { Card, CardBody, LineItem } from "../../components";
 import Button from "../../components/Button/Button";
 import {
@@ -16,8 +17,6 @@ export default function Cart() {
   const handleCheckout = () => {
     setTimeout(3000, () => dispatch(resetCart()));
   };
-
-  // console.log(lineItems);
 
   return (
     <div className="grid gap-3">

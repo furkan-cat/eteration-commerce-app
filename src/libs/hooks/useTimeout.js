@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function useTimeout() {
   const [isPending, setIsPending] = useState(false);
@@ -11,7 +10,7 @@ export default function useTimeout() {
     timeout = setTimeout(() => {
       setIsPending(false);
       timeout = null;
-      
+
       callback?.();
     }, duration);
   };
