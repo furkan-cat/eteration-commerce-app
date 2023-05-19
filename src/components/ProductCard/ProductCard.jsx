@@ -7,7 +7,6 @@ export default function ProductCard({ product, onClick, to }) {
     <Link
       to={to}
       className="flex flex-col justify-between gap-2 p-2.5 bg-white rounded-md border border-black/5"
-      // onClick={navigateToDetail}
     >
       <img src={product.image} alt={product.name} className="h-34" />
 

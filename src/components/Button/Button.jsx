@@ -3,12 +3,12 @@ import cn from "classnames";
 import Spinner from "../Spinner/Spinner";
 
 export default function Button({
-  title,
-  children,
   type,
+  title,
   onClick,
-  className,
+  children,
   disabled,
+  className,
   isLoading = false,
 }) {
   return (
@@ -29,11 +29,11 @@ export default function Button({
 }
 
 Button.propTypes = {
-  title: PropTypes.string,
   type: PropTypes.string,
+  title: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.element,
   disabled: PropTypes.bool,
-  isLoading: PropTypes.bool,
   className: PropTypes.string,
+  isLoading: PropTypes.bool,
 };

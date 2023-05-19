@@ -1,4 +1,5 @@
 import cn from "classnames";
+import PropTypes from "prop-types";
 
 export default function QuantityPill({ value, onChange, className }) {
   const handleInc = () => {
@@ -43,3 +44,9 @@ export default function QuantityPill({ value, onChange, className }) {
     </div>
   );
 }
+
+QuantityPill.propTypes = {
+  value: PropTypes.number,
+  onChange: PropTypes.func,
+  className: PropTypes.string,
+};
