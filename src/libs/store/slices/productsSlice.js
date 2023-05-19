@@ -10,7 +10,11 @@ export const fetchProductsAsync = createAsyncThunk(
       skip: products.meta.page,
       ...args,
     };
-  
+
+    const meta = {
+      page: options.skip,
+    };
+
     try {
       const originalData = await fetch(
         "https://5fc9346b2af77700165ae514.mockapi.io/products"
@@ -49,12 +53,14 @@ export const fetchProductsAsync = createAsyncThunk(
         data = data.filter((product) => args.brand.includes(product.brand));
       }
 
+      meta.totalProducts = data.length;
+
       data = data.slice(
         options.skip * options.limit,
         options.skip * options.limit + options.limit
       );
 
-      return { originalData, data };
+      return { originalData, data, meta };
     } catch (error) {
       throw error;
     }
@@ -68,7 +74,10 @@ export const productsSlice = createSlice({
     originalData: [],
     loading: false,
     error: null,
-    meta: { page: 0 },
+    meta: {
+      page: 0,
+      totalProducts: 0,
+    },
   },
   reducers: {
     increasePage: (state) => {
@@ -76,6 +85,12 @@ export const productsSlice = createSlice({
     },
     decreasePage: (state) => {
       state.meta.page--;
+    },
+    resetMeta: (state) => {
+      state.meta = {
+        page: 0,
+        totalProducts: 0,
+      };
     },
   },
   extraReducers: (builder) => {
@@ -86,6 +101,9 @@ export const productsSlice = createSlice({
       state.data = action.payload.data;
       if (!state.originalData.length)
         state.originalData = action.payload.originalData;
+
+      state.meta.totalProducts = action.payload.meta.totalProducts;
+
       state.loading = false;
     });
     builder.addCase(fetchProductsAsync.rejected, (state) => {
@@ -94,5 +112,5 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { decreasePage, increasePage } = productsSlice.actions;
+export const { decreasePage, increasePage, resetMeta } = productsSlice.actions;
 export default productsSlice.reducer;

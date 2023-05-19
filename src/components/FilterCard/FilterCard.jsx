@@ -62,7 +62,7 @@ export default function FilterCard({
                     title={title}
                     value={value}
                     onChange={onChange}
-                    defaultChecked={selected[name]?.includes?.(value)}
+                    checked={selected[name]?.includes?.(value)}
                   />
                 );
               }

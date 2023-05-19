@@ -28,6 +28,9 @@ export const filterSlice = createSlice({
     updateSearch: (state, action) => {
       state.searchValue = action.payload;
     },
+    resetFilter: (state) => {
+      state.selectedFilters = {};
+    },
   },
 });
 
@@ -61,5 +64,5 @@ export const filtersSelector = createSelector(
   }
 );
 
-export const { addFilter, updateSearch } = filterSlice.actions;
+export const { addFilter, updateSearch, resetFilter } = filterSlice.actions;
 export default filterSlice.reducer;

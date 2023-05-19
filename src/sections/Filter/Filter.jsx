@@ -4,6 +4,7 @@ import {
   addFilter,
   filtersSelector,
 } from "../../libs/store/slices/filterSlice.js";
+import { resetMeta } from "../../libs/store/slices/productsSlice";
 
 export default function Filter() {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ export default function Filter() {
 
   const handleChange = (e) => {
     const { value, name, type } = e.target;
+    dispatch(resetMeta());
     dispatch(addFilter({ key: name, value, type }));
   };
 

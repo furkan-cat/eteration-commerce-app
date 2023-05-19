@@ -5,6 +5,7 @@ export default function CheckBox({
   title,
   value,
   onChange,
+  checked,
   defaultChecked,
 }) {
   return (
@@ -14,6 +15,7 @@ export default function CheckBox({
         name={name}
         value={value}
         onChange={onChange}
+        checked={checked}
         defaultChecked={defaultChecked}
       />
       {title && <span>{title}</span>}
@@ -26,5 +28,6 @@ CheckBox.propTypes = {
   title: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
-  defaultChecked: PropTypes.bool
+  defaultChecked: PropTypes.bool,
+  checked: PropTypes.bool,
 };
