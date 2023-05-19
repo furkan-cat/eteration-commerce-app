@@ -1,5 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
+import { updateUrlParams } from "../../utils";
 
 export const filterSlice = createSlice({
   name: "filters",
@@ -21,6 +22,8 @@ export const filterSlice = createSlice({
           state.selectedFilters[key].push(value);
         }
       }
+
+      updateUrlParams(state.selectedFilters);
     },
     updateSearch: (state, action) => {
       state.searchValue = action.payload;
@@ -32,15 +35,16 @@ export const filtersSelector = createSelector(
   (state) => state.products,
   (state) => {
     const filterKeys = [
-      { key: "model", type: "checkbox" },
-      { key: "brand", type: "checkbox" },
+      { title: "Model", key: "model", type: "checkbox" },
+      { title: "Brand", key: "brand", type: "checkbox" },
     ];
 
     if (!state.originalData) return [];
     const filters = state.originalData.reduce((acc, product) => {
-      filterKeys.forEach(({ key, type }) => {
+      filterKeys.forEach(({ key, type, title }) => {
         if (!acc[key]) {
           acc[key] = {
+            title,
             type,
             key,
             data: [],
