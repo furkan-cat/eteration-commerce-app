@@ -1,5 +1,5 @@
-import { FilterCard } from "../../components";
 import { useDispatch, useSelector } from "react-redux";
+import { FilterCard } from "../../components";
 import {
   addFilter,
   filtersSelector,
@@ -8,6 +8,7 @@ import {
 export default function Filter() {
   const dispatch = useDispatch();
   const filters = useSelector(filtersSelector);
+  const selectedFilters = useSelector((state) => state.filters.selectedFilters);
 
   const handleChange = (e) => {
     const { value, name, type } = e.target;
@@ -30,8 +31,9 @@ export default function Filter() {
             <FilterCard
               key={filter.key}
               name={filter.key}
-              title={filter.key}
+              title={filter.title}
               data={filter.data}
+              selected={selectedFilters}
               type={filter.type}
               showSearch={true}
               onChange={handleChange}
