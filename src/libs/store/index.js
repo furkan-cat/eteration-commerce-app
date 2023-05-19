@@ -3,6 +3,18 @@ import productsReducer from "./slices/productsSlice";
 import filterReducer from "./slices/filterSlice";
 import cartReducer from "./slices/cartSlice";
 import { productDetailsApi } from "./api/productDetailsApi";
+import { queryToObject } from "../utils";
+
+function getPreloadedState() {
+  const state = JSON.parse(localStorage.getItem("redux-state")) || {};
+
+  const filterQueries = queryToObject(window.location.search, true);
+
+  state.filters = {};
+  state.filters.selectedFilters = filterQueries;
+
+  return state;
+}
 
 export const store = configureStore({
   reducer: {
@@ -14,7 +26,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(productDetailsApi.middleware),
 
-  preloadedState: JSON.parse(localStorage.getItem("redux-state")) || {},
+  preloadedState: getPreloadedState(),
 });
 
 store.subscribe(() => {
