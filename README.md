@@ -6,3 +6,4 @@ Products in card was setted to a LocalStorage. It's mean that whenever user open
 React, Redux Toolkit, Tailwindcss
 
 ### Demo
+https://eteration-e-commerce-app.netlify.app/
