@@ -13,7 +13,9 @@ import { addToCart } from "../libs/store/slices/cartSlice";
 
 export default function Products() {
   const dispatch = useDispatch();
-  const { data, loading, meta, originalData } = useSelector((state) => state.products);
+  const { data, loading, meta, originalData } = useSelector(
+    (state) => state.products
+  );
   const selectedFilters = useSelector((state) => state.filters.selectedFilters);
 
   useEffect(() => {

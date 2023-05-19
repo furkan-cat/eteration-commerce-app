@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Button from "../Button/Button";
 import cn from "classnames";
 
-export default function ProductDetailCard({ product, className }) {
+export default function ProductDetailCard({ product, onClick, className }) {
   return (
     <div
       className={cn(
@@ -17,7 +17,7 @@ export default function ProductDetailCard({ product, className }) {
         <div className="text-sm">
           {product.brand} {product.model}
         </div>
-        <Button title="Add to Cart" className="w-full" />
+        <Button title="Add to Cart" className="w-full" onClick={onClick} />
         <p>{product.description}</p>
       </div>
     </div>

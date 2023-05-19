@@ -40,7 +40,7 @@ export default function Navbar() {
           
           <div className="flex items-center sm:space-x-2">
             <AiOutlineUser />
-            <div>Kerem</div>
+            <div>Furkan</div>
           </div>
         </div>
       </div>
