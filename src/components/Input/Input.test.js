@@ -38,6 +38,12 @@ describe("Input", () => {
     expect(placeholder).toBeInTheDocument();
   });
 
+  it("should display prefix icon", () => {
+    const { prefix } = setup();
+
+    expect(prefix).toBeInTheDocument();
+  });
+
   it("should onChange event work properly", async () => {
     const user = userEvent.setup();
     const { input } = setup();
