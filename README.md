@@ -1,6 +1,6 @@
 # eteration-commerce-app
-E-commerce app with the adding product to cart, filtering, searching. Added filtering with query strings. If the user refresh or comes url with query params, app will show filtered products according to query strings. 
-Products in card was setted to a LocalStorage. It's mean that whenever user open browser, products in cart will be there.
+E-commerce app with the ability to add products to the cart, filter and search. Filtering uses query strings, so if the user refreshes the page or opens a URL with query parameters, the app displays the filtered products accordingly.
+Products in **cart** are stored in **LocalStorage**. This means that whenever the user opens the browser, the cart items remain.
 
 ## Tech
 React, Redux Toolkit, Tailwindcss
