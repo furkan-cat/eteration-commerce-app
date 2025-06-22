@@ -15,8 +15,9 @@ export default function Navbar() {
   const dispatch = useDispatch();
 
   const handleSearch = (e) => {
-    dispatch(updateSearch(e.target.value));
-    dispatch(fetchProductsAsync({ text: searchValue }));
+    const value = e.target.value;
+    dispatch(updateSearch(value));
+    dispatch(fetchProductsAsync({ text: value }));
   };
 
   return (
