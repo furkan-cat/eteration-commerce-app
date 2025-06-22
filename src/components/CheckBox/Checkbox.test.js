@@ -34,8 +34,4 @@ describe("Checkbox", () => {
     expect(mockOnChangeHandler).toHaveBeenCalled();
     expect(mockOnChangeHandler).toHaveBeenCalledTimes(1);
   });
-  //   it("", () => {});
 });
-
-// it("", () => {});
-// it("", () => {});
